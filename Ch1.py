@@ -49,12 +49,6 @@ chw_tensor = viewed_tensor.permute(2, 0, 1) # channel, height, width
 # > [1, 20, 10] --> [10, 1, 20]
 
 
-###########################
-# Ch2 Image classification
-###########################
-
-
-
 
 
 
