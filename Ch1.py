@@ -1,10 +1,8 @@
+# Ch1 Start
+
 import torch
 import os
 import numpy as np
-
-###################
-# Ch1 Start
-###################
 
 # select gpu
 
