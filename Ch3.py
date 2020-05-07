@@ -13,7 +13,7 @@ n_classes = 10
 class CNN(nn.Module):
   
   def __init__(nn.Module):
-    super(CNN, self).__init__()
+    super(CNN, self).__init__(self, n_classes)
     self.features = nn.Sequential(
        nn.Conv2d(3, 64, kernel_size = 11, stride = 4, padding = 2),
        nn.ReLU(),
@@ -46,14 +46,15 @@ class CNN(nn.Module):
     x = self.classifier(x)
     return x
   
-
+model = CNN(n_classes)
+  
 # pytorch_hub
-# load pretrained model
+# load pretrained model, transferlearning
 # https://pytorch.org/docs/stable/hub.html
 
-model = torch.hub.load('pytorch/vision', 'resnet50', pretrained=True)
+# model = torch.hub.load('pytorch/vision', 'resnet50', pretrained=True)
 
-# 寫def train 迴圈開train
+# def train 迴圈開train
 
 
 
