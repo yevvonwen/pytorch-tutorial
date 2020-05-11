@@ -1,6 +1,6 @@
 import torch
 import torchvision
-from torchvision import models
+from torchvision import models, transforms
 import torch.optim as optimizer
 
 # transfer learning and other tricks
@@ -110,10 +110,10 @@ for layer in unfreeze_layers:
 # 在 transforms 裡做 in Ch2
 
 trainsforms = torchvision.transforms.Compose([
-    torchvision.transforms.ColorJitter(brightness = 0, contrast = 0, saturation = 0, hue = 0), # random change ... value from 0-1
-    torchvision.transforms.RandomHorizontalFlip(p = 0.5),
-    torchvision.transforms.RandomVerticalFlip(p = 0.5),   # random rotate default p = 0.1
-    torchvision.transforms.RandomRotation(degree = 45)
+    transforms.ColorJitter(brightness = 0, contrast = 0, saturation = 0, hue = 0), # random change ... value from 0-1
+    transforms.RandomHorizontalFlip(p = 0.5),
+    transforms.RandomVerticalFlip(p = 0.5),   # random rotate default p = 0.1
+    transforms.RandomRotation(degree = 45)
     
     transforms.Resize(),
     transforms.ToTensor(),
@@ -134,10 +134,10 @@ def transform_color_space(x):
     return output
 
 # all
-color_transform = torchvision.transforms.Lambda(lambda x: transform_color_space)
+color_transform = transforms.Lambda(lambda x: transform_color_space)
 
 # Random
-random_color_transform = torchvision.transforms.RandomApply([color_transform]) # default p = 0.5
+random_color_transform = transforms.RandomApply([color_transform]) # default p = 0.5
 
 # ensemble model
 predictions = [m[i].fit(input) for i in models]
