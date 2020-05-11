@@ -141,4 +141,4 @@ random_color_transform = transforms.RandomApply([color_transform]) # default p =
 
 # ensemble model
 predictions = [m[i].fit(input) for i in models]
-avg_prediction = torch.stack(b).mean(0).argmax() # stack tensor的最後一個維度的元素相疊加
+avg_prediction = torch.stack(b).mean(0).argmax() # stack tensor的一個維度的元素相疊加
