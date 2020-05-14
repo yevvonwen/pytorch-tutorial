@@ -56,7 +56,13 @@ test_data_loader = torch.utils.data.DataLoader(test_data, batch_size = args.batc
 
 model = torch.hub.load('pytorch/vision', 'resnet50', pretrained=True)
 
-#####
+for name, param in model.named_parameters():
+    param.requres_grad = True
+
+model.fc = nn.Sequential(nn.Linear(transfer_model.fc.in_features, 500),
+                                 nn.ReLu(),
+                                 nn.Dropout(),
+                                 nn.Linear(500, 2))
 
 def train(model, optimizer, loss_fn, train_loader, val_loader, epochs= 200):
     for epoch in range(epochs):
@@ -104,7 +110,7 @@ def train(model, optimizer, loss_fn, train_loader, val_loader, epochs= 200):
           
 
 train(model, optimizer, torch.nn.mseloss, train_data_loader, valid_data_loader)
-torch.save(simplenet, "/home/jovyan/colorful-moth/data/model/20200514/model.h5")          
+torch.save(model, "/home/jovyan/colorful-moth/data/model/20200514/model.h5")          
     
 
 
