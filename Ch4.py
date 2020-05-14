@@ -20,7 +20,7 @@ for name, param in transfer_model.named_parameters():
     
 # change final classification layers
 
-tranfer_model.fc = nn.Sequential(nn.Linear(tranfer_model.fc.in_features, 500),
+transfer_model.fc = nn.Sequential(nn.Linear(transfer_model.fc.in_features, 500),
                                  nn.ReLu(),
                                  nn.Dropout(),
                                  nn.Linear(500, 2)
